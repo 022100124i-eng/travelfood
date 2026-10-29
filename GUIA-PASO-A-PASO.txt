@@ -1,0 +1,27 @@
+TRAVELFOOD - EJECUCIÓN RÁPIDA
+
+1. Cierra servidores anteriores:
+taskkill /F /IM node.exe
+
+2. Backend:
+Entra a la carpeta backend y abre PowerShell.
+
+npm.cmd install
+node server.js
+
+Debe quedar:
+TRAVELFOOD Backend: http://localhost:3000
+
+3. Frontend:
+En otra PowerShell, entra a frontend.
+
+npm.cmd install
+npm.cmd run dev
+
+4. Abre la dirección que indique Vite, normalmente:
+http://localhost:5173
+
+5. Prueba:
+País: Perú
+Ciudad: Cusco
+Luego pulsa "Explorar ciudad".

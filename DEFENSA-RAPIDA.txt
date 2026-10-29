@@ -1,0 +1,29 @@
+TRAVELYOU — DEFENSA RÁPIDA
+
+¿QUÉ HACE?
+El usuario selecciona un país y una ciudad. TravelYou muestra clima, gastronomía, lugares cercanos, mapa, imágenes y conversión de moneda.
+
+¿CÓMO FUNCIONA?
+React envía la ciudad al backend. Node.js consulta servicios externos, procesa respuestas JSON y devuelve los datos a la interfaz.
+
+¿QUÉ SERVICIOS EXTERNOS USA?
+- Open-Meteo Geocoding: localiza la ciudad.
+- Open-Meteo Forecast: clima y pronóstico.
+- MediaWiki/Wikipedia: información, imágenes y lugares cercanos.
+- OpenStreetMap: mapa y ubicaciones.
+- ExchangeRate-API: tipo de cambio.
+
+¿POR QUÉ LA GASTRONOMÍA ESTÁ INTEGRADA EN EL PROYECTO?
+Para garantizar que los países disponibles siempre tengan platos típicos y no depender de una API que no cubra todas las gastronomías. Wikipedia agrega imágenes cuando están disponibles.
+
+¿POR QUÉ NODE.JS?
+Centraliza las consultas externas. React consulta al backend y el backend se comunica con las APIs.
+
+¿CÓMO EVITAS QUE UNA API QUE FALLA TUMBE TODO?
+El backend usa Promise.allSettled. Si un servicio externo falla, las demás partes pueden seguir mostrándose.
+
+¿ES RESPONSIVE?
+Sí. El diseño cambia columnas y tamaños mediante media queries para PC, tablet y celular.
+
+FLUJO
+Usuario → React → Node.js → servicios externos → JSON → React.
