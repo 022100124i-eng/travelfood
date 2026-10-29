@@ -1,9 +1,11 @@
+
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const { COUNTRIES, CURRENCIES, CITY_GUIDES } = require("./data");
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -342,10 +344,6 @@ async function enrichGuide(guide, city, country) {
   };
 }
 
-app.get("/", (req, res) => {
-  res.send("TRAVELFOOD Backend funcionando");
-});
-
 app.get("/api/health", (req, res) => {
   res.json({ ok: true, project: "TRAVELFOOD" });
 });
@@ -440,6 +438,15 @@ app.post("/api/convert", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+// Mostrar la aplicación React y mantener las rutas /api funcionando.
+const frontendPath = path.join(__dirname, "../frontend/dist");
+app.use(express.static(frontendPath));
+
+// Mostrar React para las rutas de la página.
+app.get("/{*ruta}", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`TRAVELFOOD Backend: http://localhost:${PORT}`);
 });
